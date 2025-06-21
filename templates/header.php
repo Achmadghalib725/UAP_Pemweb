@@ -2,26 +2,26 @@
 // templates/header.php (Dengan Notifikasi Terintegrasi)
 require_once __DIR__ . '/../config.php';
 
-// Inisialisasi variabel agar tidak error jika tidak login
+// Inisialisasi variabel agar tidak error jika belum login
 $user_profile_picture = 'default.png';
 $unread_notifications = 0;
 
-// Jika pengguna sudah login, ambil semua data yang diperlukan untuk header
+// Jika pengguna sudah login, ambil data profil dan notifikasi
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
-    
-    // 1. Ambil foto profil
+
+    // Ambil foto profil
     $pic_query = "SELECT profile_picture FROM users WHERE id = $user_id";
     $pic_result = mysqli_query($conn, $pic_query);
     if ($pic_row = mysqli_fetch_assoc($pic_result)) {
         $user_profile_picture = $pic_row['profile_picture'];
     }
 
-    // 2. Ambil jumlah notifikasi yang belum dibaca
-    $notif_count_query = "SELECT COUNT(*) AS unread_count FROM notifications WHERE user_id = $user_id AND is_read = 0";
-    $notif_count_result = mysqli_query($conn, $notif_count_query);
-    $notif_count_row = mysqli_fetch_assoc($notif_count_result);
-    $unread_notifications = $notif_count_row['unread_count'];
+    // Hitung notifikasi belum dibaca
+    $notif_query = "SELECT COUNT(*) AS unread_count FROM notifications WHERE user_id = $user_id AND is_read = 0";
+    $notif_result = mysqli_query($conn, $notif_query);
+    $notif_row = mysqli_fetch_assoc($notif_result);
+    $unread_notifications = $notif_row['unread_count'];
 }
 ?>
 <!DOCTYPE html>
@@ -45,7 +45,7 @@ if (isset($_SESSION['user_id'])) {
 
             <?php if (isset($_SESSION['user_id'])): ?>
                 <div class="header-right-actions">
-                    
+
                     <a href="notifications.php" class="header-action-btn" title="Notifikasi">
                         <i data-feather="bell"></i>
                         <?php if ($unread_notifications > 0): ?>
@@ -61,7 +61,7 @@ if (isset($_SESSION['user_id'])) {
                         <div class="profile-dropdown" id="profile-dropdown-menu">
                             <a href="dashboard.php"><i data-feather="grid"></i> Dashboard</a>
                             <a href="edit_profile.php"><i data-feather="user"></i> Pengaturan Profil</a>
-                             <?php if ($_SESSION['user_role'] === 'admin'): ?>
+                            <?php if ($_SESSION['user_role'] === 'admin'): ?>
                                 <a href="admin_dashboard.php"><i data-feather="sliders"></i> Dashboard Admin</a>
                             <?php endif; ?>
                             <div class="dropdown-divider"></div>

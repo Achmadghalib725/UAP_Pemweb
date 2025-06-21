@@ -1,3 +1,4 @@
+
 <?php
 // logout.php
 
@@ -16,5 +17,6 @@ session_destroy();
 // Kita juga bisa menambahkan parameter di URL untuk menampilkan pesan.
 header("Location: login.php?status=loggedout");
 exit; // Pastikan untuk keluar dari skrip setelah redirect.
+
 
 ?>

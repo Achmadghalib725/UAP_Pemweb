@@ -1,3 +1,4 @@
+
 <?php
 // notifications.php
 require 'config.php';
@@ -56,4 +57,5 @@ $notifications_result = mysqli_query($conn, $notifications_query);
 
 <?php
 require 'templates/footer.php';
+
 ?>

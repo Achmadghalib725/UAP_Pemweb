@@ -1,3 +1,4 @@
+
 <?php
 // admin_edit_task.php
 require 'templates/header.php';
@@ -97,4 +98,5 @@ $task = mysqli_fetch_assoc($result);
 
 <?php
 require 'templates/footer.php';
+
 ?>
