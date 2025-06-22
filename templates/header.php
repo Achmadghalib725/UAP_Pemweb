@@ -11,11 +11,19 @@ if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
 
     // Ambil foto profil
-    $pic_query = "SELECT profile_picture FROM users WHERE id = $user_id";
-    $pic_result = mysqli_query($conn, $pic_query);
-    if ($pic_row = mysqli_fetch_assoc($pic_result)) {
-        $user_profile_picture = $pic_row['profile_picture'];
+$pic_query = "SELECT profile_picture FROM users WHERE id = $user_id";
+$pic_result = mysqli_query($conn, $pic_query);
+if ($pic_row = mysqli_fetch_assoc($pic_result)) {
+    $user_profile_picture = $pic_row['profile_picture'];
+
+    // Gunakan foto default jika belum mengatur foto profil
+    if (empty($user_profile_picture) || !file_exists("uploads/" . $user_profile_picture)) {
+        $user_profile_picture = "default.png"; // Pastikan file ini ada di folder uploads/
     }
+} else {
+    // Fallback jika tidak ditemukan
+    $user_profile_picture = "default.png";
+}
 
     // Hitung notifikasi belum dibaca
     $notif_query = "SELECT COUNT(*) AS unread_count FROM notifications WHERE user_id = $user_id AND is_read = 0";
@@ -40,7 +48,7 @@ if (isset($_SESSION['user_id'])) {
     <header class="app-header">
         <div class="header-container">
             <div class="logotype">
-                <a href="dashboard.php">DoTask.</a>
+                <p>DoTask.</a>
             </div>
 
             <?php if (isset($_SESSION['user_id'])): ?>

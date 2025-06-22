@@ -1,5 +1,5 @@
-</div> <footer class="app-footer">
-        <p>&copy; <?php echo date('Y'); ?> DoTask. Dibuat Oleh Kelompok 6. HIDUP JOKOW..........!!</p>
+<footer class="app-footer">
+        <p>&copy; <?php echo date('Y'); ?> DoTask. Dibuat Oleh Kelompok 6</p>
     </footer>
     <script>
         feather.replace();

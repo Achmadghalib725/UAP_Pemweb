@@ -36,25 +36,25 @@ require 'templates/header.php';
 <div class="main-content">
     <!-- Header Admin -->
     <div class="content-header">
-        <h3>👑 Dashboard Admin</h3>
-        <p>Halo, <strong><?php echo htmlspecialchars($_SESSION['user_name']); ?></strong>! Anda masuk sebagai <span class="role-badge role-admin">Admin</span>.</p>
+        <h3>Dashboard Admin</h3>
+        <p>Halo, <strong><?php echo htmlspecialchars($_SESSION['user_name']); ?></strong>! Anda masuk sebagai <span class="role-badge role-admin">Admin</span></p>
     </div>
 
     <!-- Statistik Ringkas -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div class="card bg-white p-4 rounded-xl shadow-sm">
+    <div class="dashboard-row">
+        <div class="dashboard-card">
             <h5>Total Pengguna</h5>
-            <p style="font-size: 2rem; font-weight: bold;"><?php echo $total_users; ?> 🧑‍🤝‍🧑</p>
+            <p style="font-size: 2rem; font-weight: bold;"><?php echo $total_users; ?> </p>
         </div>
-        <div class="card bg-white p-4 rounded-xl shadow-sm">
+        <div class="dashboard-card">
             <h5>Total Tugas</h5>
-            <p style="font-size: 2rem; font-weight: bold;"><?php echo $total_tasks; ?> ✅</p>
+            <p style="font-size: 2rem; font-weight: bold;"><?php echo $total_tasks; ?> </p>
         </div>
     </div>
 
     <!-- Manajemen Pengguna -->
     <div class="admin-section">
-        <h4>👤 Manajemen Pengguna</h4>
+        <h4>Manajemen Pengguna</h4>
         <div class="table-responsive">
             <table class="data-table">
                 <thead>
@@ -92,7 +92,7 @@ require 'templates/header.php';
 
     <!-- Manajemen Tugas -->
     <div class="admin-section mt-6">
-        <h4>📋 Manajemen Tugas Global</h4>
+        <h4> Manajemen Tugas Global</h4>
         <div class="table-responsive">
             <table class="data-table">
                 <thead>
